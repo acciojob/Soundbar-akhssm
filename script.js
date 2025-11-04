@@ -1,4 +1,4 @@
-//your JS code here. If required.
+// your JS code here
 
 const sounds = {
   applause: "https://www.fesliyanstudios.com/play-mp3/387",
@@ -10,7 +10,7 @@ const sounds = {
 };
 
 const buttonsContainer = document.getElementById("buttons");
-let currentAudio = null;
+const audioPlayer = document.getElementById("audio-player");
 
 for (let sound in sounds) {
   const btn = document.createElement("button");
@@ -27,15 +27,13 @@ stopBtn.addEventListener("click", stopSound);
 buttonsContainer.appendChild(stopBtn);
 
 function playSound(sound) {
-  stopSound();
-  currentAudio = new Audio(sounds[sound]);
-  currentAudio.play();
+  stopSound(); // stop previous
+  audioPlayer.src = sounds[sound]; 
+  audioPlayer.style.display = "block"; 
+  audioPlayer.play(); 
 }
 
 function stopSound() {
-  if (currentAudio) {
-    currentAudio.pause();
-    currentAudio.currentTime = 0;
-    currentAudio = null;
-  }
+  audioPlayer.pause();
+  audioPlayer.currentTime = 0;
 }
